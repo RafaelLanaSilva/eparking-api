@@ -1,8 +1,9 @@
 ﻿namespace Eparking.Domain.Models.Enums
 {
-    public enum TipoVeiculo
+    public enum TipoVaga
     {
         Carro = 1,
-        Motocicleta = 2
+        Motocicleta = 2,
+        Preferencial = 3
     }
 }
