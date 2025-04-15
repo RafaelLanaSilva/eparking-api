@@ -5,6 +5,14 @@ VisualStudioVersion = 17.13.35806.99 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eparking.API", "Eparking.API\Eparking.API.csproj", "{F758333C-428C-4DD3-B688-707520B772F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APPLICATION", "APPLICATION", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOMAIN", "DOMAIN", "{1AF4D76C-5EFB-4D2D-9229-7F11B780A80C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "INFRASTRUCTURE", "INFRASTRUCTURE", "{1C95AF5A-9FE9-4C5C-A6B3-A9AC8102DD70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eparking.Domain", "Eparking.Domain\Eparking.Domain.csproj", "{6EBB5491-B5A9-43A5-A88E-AC85CBF2F1BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +23,17 @@ Global
 		{F758333C-428C-4DD3-B688-707520B772F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F758333C-428C-4DD3-B688-707520B772F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F758333C-428C-4DD3-B688-707520B772F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBB5491-B5A9-43A5-A88E-AC85CBF2F1BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBB5491-B5A9-43A5-A88E-AC85CBF2F1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBB5491-B5A9-43A5-A88E-AC85CBF2F1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBB5491-B5A9-43A5-A88E-AC85CBF2F1BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F758333C-428C-4DD3-B688-707520B772F1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6EBB5491-B5A9-43A5-A88E-AC85CBF2F1BD} = {1AF4D76C-5EFB-4D2D-9229-7F11B780A80C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF1189D8-65C5-4EA1-B7D0-263B4A2D7134}
