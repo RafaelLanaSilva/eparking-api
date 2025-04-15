@@ -1,0 +1,6 @@
+@Eparking.API_HostAddress = http://localhost:5166
+
+GET {{Eparking.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
