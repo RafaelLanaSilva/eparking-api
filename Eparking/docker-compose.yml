@@ -1,0 +1,16 @@
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: sqlserver_eparking
+    ports:
+      - "1436:1433"
+    environment:
+      SA_PASSWORD: "Trop@1234"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    restart: always
+
+volumes:
+  sqlserver_data:
