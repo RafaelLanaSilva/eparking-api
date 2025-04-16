@@ -15,7 +15,7 @@
 
         #region Relacionamentos
 
-        public Movimentacao? Movimentacao { get; set; }
+        public ICollection<Movimentacao>? Movimentacoes { get; set; }
         public ICollection<Vaga>? Vagas { get; set; }
         public ICollection<Tarifa>? Tarifas { get; set; }
 

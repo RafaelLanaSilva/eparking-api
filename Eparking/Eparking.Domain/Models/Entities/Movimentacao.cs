@@ -5,7 +5,7 @@
         #region Propriedades
 
         public Guid Id { get; set; }
-        public Guid EstaciomentoId { get; set; }
+        public Guid EstacionamentoId { get; set; }
         public Guid VagaId { get; set; }
         public Guid VeiculoId { get; set; }
         public DateTime? HoraEntrada { get; set; }
@@ -18,7 +18,7 @@
 
         public Vaga? Vaga { get; set; }
         public Veiculo? Veiculo { get; set; }
-        public ICollection<Estacionamento>? Estacionamentos { get; set; }
+        public Estacionamento? Estacionamento { get; set; }
 
         #endregion
     }
