@@ -1,6 +1,6 @@
 ﻿namespace Eparking.Domain.Models.DTOs.Response
 {
-    public class MovimentoResponseDto
+    public class MovimentacaoResponseDto
     {
         public Guid Id { get; set; }
         public Guid EstacionamentoId { get; set; }
