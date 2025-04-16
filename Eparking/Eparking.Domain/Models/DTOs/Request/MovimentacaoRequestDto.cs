@@ -2,7 +2,7 @@
 
 namespace Eparking.Domain.Models.DTOs.Request
 {
-    public class MovimentoRequestDto
+    public class MovimentacaoRequestDto
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public Guid EstacionamentoId { get; set; }
