@@ -13,10 +13,12 @@ namespace Eparking.Domain.Mappings
             CreateMap<Veiculo, VeiculoResponseDto>();
 
             CreateMap<VagaRequestDto, Vaga>();
-            CreateMap<Vaga, VagaResponseDto>();
+            CreateMap<Vaga, VagaResponseDto>()
+                .ForMember(dest => dest.TipoVaga, opt => opt.MapFrom(src => src.TipoVaga.ToString()));  // Mapeia para o nome do enum;
 
             CreateMap<EstacionamentoRequestDto, Estacionamento>();
             CreateMap<Estacionamento, EstacionamentoResponseDto>();
+            CreateMap<Estacionamento, EstacionamentoComVagasResponseDto>();
 
             CreateMap<TarifaRequestDto, Tarifa>();
             CreateMap<Tarifa, TarifaResponseDto>();
