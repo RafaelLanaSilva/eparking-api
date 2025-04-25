@@ -49,5 +49,15 @@ namespace Eparking.Infra.Data.Repositories
                     .FirstOrDefault(v => v.EstacionamentoId == estacionamentoId && v.Numero == numero);
             }
         }
+
+        public Vaga? ObterVagaPorId(Guid id)
+        {
+            using(var dataContext = new DataContext())
+            {
+                return dataContext
+                    .Set<Vaga>()
+                    .FirstOrDefault(v => v.Id == id);
+            }
+        }
     }
 }

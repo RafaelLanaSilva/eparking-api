@@ -60,5 +60,31 @@ namespace Eparking.Infra.Data.Repositories
                     .ToList();
             }
         }
+
+        public List<Movimentacao> ObterHistoricoPorPlaca(string placa)
+        {
+            using (var dataContext = new DataContext())
+            {
+                return dataContext.Set<Movimentacao>()
+                    .Include(m => m.Veiculo)
+                    .Include(m => m.Estacionamento)
+                    .Include(m => m.Vaga)
+                    .Where(m => m.Veiculo != null && m.Veiculo.Placa == placa)
+                    .ToList();
+            }
+        }
+
+        public List<Movimentacao> ObterHistoricoPorDatas(DateTime dataInicio, DateTime dataFim)
+        {
+            using (var dataContext= new DataContext())
+            {
+                return dataContext.Set<Movimentacao>()
+                    .Where  (m => (m.HoraEntrada >= dataInicio && m.HoraEntrada <= dataFim) ||
+                            (m.HoraSaida >= dataInicio && m.HoraSaida <= dataFim))
+                    .Include(v => v.Veiculo)
+                    .Include(e => e.Estacionamento)
+                    .ToList();
+            }
+        }
     }
 }

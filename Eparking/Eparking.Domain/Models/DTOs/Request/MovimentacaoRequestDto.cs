@@ -15,5 +15,8 @@ namespace Eparking.Domain.Models.DTOs.Request
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public DateTime? HoraEntrada { get; set; }
+
+        // HoraSaida é opcional e deve ser preenchida quando a movimentação for encerrada
+        public DateTime? HoraSaida { get; set; }
     }
 }

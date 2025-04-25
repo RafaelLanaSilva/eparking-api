@@ -5,6 +5,7 @@ namespace Eparking.Domain.Contracts.Repositories
 {
     public interface IVagaRepository : IBaseRepository<Vaga>
     {
+        Vaga? ObterVagaPorId(Guid id);
         List<Vaga>? ObterVagasDisponiveis(Guid estacionamentoId);
         List<Vaga>? ObterVagasOcupadas(Guid estacionamentoId);
         List<Vaga>? ObterVagasPorTipo(TipoVaga tipoVaga);   
