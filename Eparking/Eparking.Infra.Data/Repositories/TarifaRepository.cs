@@ -7,6 +7,15 @@ namespace Eparking.Infra.Data.Repositories
 {
     public class TarifaRepository: BaseRepository<Tarifa>, ITarifaRepository
     {
+        public Tarifa? ObterPorEstacionamentoETipo(Guid estacionamentoId, TipoVeiculo tipo)
+        {
+            using (var dataContext = new DataContext())
+            {
+                return dataContext.Set<Tarifa>()
+                    .FirstOrDefault(t => t.EstacionamentoId == estacionamentoId && t.TipoVeiculo == tipo);
+            }
+        }
+
         public List<Tarifa>? ObterPorEstacionamentoId(Guid estacionamentoId)
         {
             using (var dataContext = new DataContext())
