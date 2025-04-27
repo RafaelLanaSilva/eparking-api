@@ -1,9 +1,4 @@
 using Eparking.API.Configuration;
-using Eparking.Domain.Contracts.Repositories;
-using Eparking.Domain.Contracts.Services;
-using Eparking.Domain.Mappings;
-using Eparking.Domain.Services;
-using Eparking.Infra.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

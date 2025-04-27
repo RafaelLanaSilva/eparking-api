@@ -9,7 +9,6 @@ namespace Eparking.Domain.Models.DTOs.Request
         public Guid EstacionamentoId { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [EnumDataType(typeof(TipoVeiculo), ErrorMessage = "O campo {0} deve ser um valor válido.")]
         public TipoVeiculo? TipoVeiculo { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
