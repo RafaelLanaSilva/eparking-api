@@ -118,7 +118,7 @@ namespace Eparking.API.Controllers
         }
 
 
-        [HttpGet("{placa}")]
+        [HttpGet("placa/{placa}")]
         [ProducesResponseType(typeof(MovimentacaoResponseDto), 200)]
         public IActionResult GetByPlaca(string placa)
         {
@@ -137,7 +137,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{estacionamentoId}")]
+        [HttpGet("estacionamento/{estacionamentoId}")]
         [ProducesResponseType(typeof(MovimentacaoResponseDto), 200)]
         public IActionResult GetByEstacionamento(Guid estacionamentoId)
         {
@@ -156,7 +156,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{vagaId}")]
+        [HttpGet("vaga/{vagaId}")]
         [ProducesResponseType(typeof(MovimentacaoResponseDto), 200)]
         public IActionResult GetByVaga(Guid vagaId)
         {
@@ -175,7 +175,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{veiculoId}")]
+        [HttpGet("veiculo/{veiculoId}")]
         [ProducesResponseType(typeof(MovimentacaoResponseDto), 200)]
         public IActionResult GetByVeiculo(Guid veiculoId)
         {
@@ -194,7 +194,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{dataInicio}/{dataFim}")]
+        [HttpGet("data/{dataInicio}/{dataFim}")]
         [ProducesResponseType(typeof(MovimentacaoResponseDto), 200)]
         public IActionResult GetByData(DateTime dataInicio, DateTime dataFim)
         {

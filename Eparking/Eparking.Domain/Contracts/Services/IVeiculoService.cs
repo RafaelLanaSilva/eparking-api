@@ -1,11 +1,6 @@
 ﻿using Eparking.Domain.Models.DTOs.Request;
 using Eparking.Domain.Models.DTOs.Response;
 using Eparking.Domain.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eparking.Domain.Contracts.Services
 {
