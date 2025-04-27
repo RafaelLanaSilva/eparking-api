@@ -117,7 +117,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{estacionamentoId}")]
+        [HttpGet("estacionamento/{estacionamentoId}")]
         [ProducesResponseType(typeof(TarifaResponseDto), 200)]
         public IActionResult GetByEstacionamento(Guid estacionamentoId)
         {
@@ -136,7 +136,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{estacionamentoId}/{tipoVeiculo}")]
+        [HttpGet("estacionamento{estacionamentoId}/tipo/{tipoVeiculo}")]
         [ProducesResponseType(typeof(TarifaResponseDto), 200)]
         public IActionResult GetByTipoVeiculo(Guid estacionamentoId, TipoVeiculo tipoVeiculo)
         {
