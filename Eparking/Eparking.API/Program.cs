@@ -1,3 +1,4 @@
+using Eparking.API.Configuration;
 using Eparking.Domain.Contracts.Repositories;
 using Eparking.Domain.Contracts.Services;
 using Eparking.Domain.Mappings;
@@ -9,20 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddRouting(map => { map.LowercaseUrls = true; });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add AutoMapper
-builder.Services.AddAutoMapper(typeof(ProfileMap));
-
-// Add Dependency Injection
-builder.Services.AddTransient<IEstacionamentoService, EstacionamentoDomainService>();
-builder.Services.AddTransient<IEstacionamentoRepository, EstacionamentoRepository>();
-builder.Services.AddTransient<IVeiculoService, VeiculoDomainService>();
-builder.Services.AddTransient<IVeiculoRepository, VeiculoRepository>();
+SwaggerConfiguration.AddSwaggerConfiguration(builder.Services);
+CorsConfiguration.AddCorsConfiguration(builder.Services);
+DependencyInjectionConfiguration.AddDependencyInjection(builder.Services);
 
 var app = builder.Build();
+
+SwaggerConfiguration.UseSwaggerConfiguration(app);
+CorsConfiguration.UseCorsConfiguration(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
