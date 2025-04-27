@@ -9,7 +9,6 @@ namespace Eparking.Domain.Models.DTOs.Request
         public int? Numero { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [EnumDataType(typeof(TipoVaga), ErrorMessage = "O campo {0} deve ser um valor válido.")]
         public TipoVaga? TipoVaga { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]

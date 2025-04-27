@@ -18,7 +18,6 @@ namespace Eparking.Domain.Models.DTOs.Request
         public string? Cor { get; set; }
 
         [Required(ErrorMessage = "O tipo de veículo é obrigatório.")]
-        [EnumDataType(typeof(TipoVaga), ErrorMessage = "O campo {0} deve ser um valor válido.")]
         public TipoVeiculo? TipoVeiculo { get; set; }
     }
 }
