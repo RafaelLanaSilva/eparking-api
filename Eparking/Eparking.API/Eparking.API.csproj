@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Eparking.Infra.Data\Eparking.Infra.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
