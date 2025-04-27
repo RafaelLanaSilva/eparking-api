@@ -8,22 +8,22 @@ namespace Eparking.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VeiculoController : ControllerBase
+    public class TarifaController : ControllerBase
     {
-        private readonly IVeiculoService _veiculoService;
+        private readonly ITarifaService _tarifaService;
 
-        public VeiculoController(IVeiculoService veiculoService)
+        public TarifaController(ITarifaService tarifaService)
         {
-            _veiculoService = veiculoService;
+            _tarifaService = tarifaService;
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 201)]
-        public IActionResult Post(VeiculoRequestDto request)
+        [ProducesResponseType(typeof(TarifaResponseDto), 201)]
+        public IActionResult Post(TarifaRequestDto request)
         {
             try
             {
-                var response = _veiculoService.Criar(request);
+                var response = _tarifaService.Criar(request);
 
                 return StatusCode(201, response);
             }
@@ -33,17 +33,17 @@ namespace Eparking.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(400, e.Message);
+                return StatusCode(500, e.Message);
             }
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult Put(Guid id, VeiculoRequestDto request)
+        [ProducesResponseType(typeof(TarifaResponseDto), 200)]
+        public IActionResult Put(Guid id, TarifaRequestDto request)
         {
             try
             {
-                var response = _veiculoService.Atualizar(id, request);
+                var response = _tarifaService.Atualizar(id, request);
 
                 return StatusCode(200, response);
             }
@@ -56,13 +56,14 @@ namespace Eparking.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
+        [ProducesResponseType(typeof(TarifaResponseDto), 200)]
         public IActionResult Delete(Guid id)
         {
             try
             {
-                var response = _veiculoService.Excluir(id);
+                var response = _tarifaService.Excluir(id);
 
                 return StatusCode(200, response);
             }
@@ -77,12 +78,12 @@ namespace Eparking.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
+        [ProducesResponseType(typeof(IEnumerable<TarifaResponseDto>), 200)]
         public IActionResult Get()
         {
             try
             {
-                var response = _veiculoService.ObterTodos();
+                var response = _tarifaService.ObterTodos();
 
                 return StatusCode(200, response);
             }
@@ -97,12 +98,12 @@ namespace Eparking.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
+        [ProducesResponseType(typeof(TarifaResponseDto), 200)]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                var response = _veiculoService.ObterPorId(id);
+                var response = _tarifaService.ObterPorId(id);
 
                 return StatusCode(200, response);
             }
@@ -116,14 +117,13 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{placa}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult GetByPlaca(string placa)
+        [HttpGet("{estacionamentoId}")]
+        [ProducesResponseType(typeof(TarifaResponseDto), 200)]
+        public IActionResult GetByEstacionamento(Guid estacionamentoId)
         {
             try
             {
-                var response = _veiculoService.ObterPorPlaca(placa);
-
+                var response = _tarifaService.ObterPorEstacionamento(estacionamentoId);
                 return StatusCode(200, response);
             }
             catch (ApplicationException e)
@@ -136,32 +136,13 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{tipoVeiculo}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult GetByTipoVeiculo(TipoVeiculo tipoVeiculo)
+        [HttpGet("{estacionamentoId}/{tipoVeiculo}")]
+        [ProducesResponseType(typeof(TarifaResponseDto), 200)]
+        public IActionResult GetByTipoVeiculo(Guid estacionamentoId, TipoVeiculo tipoVeiculo)
         {
             try
             {
-                var response = _veiculoService.ObterPorTipo(tipoVeiculo);
-                return StatusCode(200, response);
-            }
-            catch (ApplicationException e)
-            {
-                return StatusCode(400, e.Message);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
-        }
-
-        [HttpGet("movimentacoes")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult GetByMovements()
-        {
-            try
-            {
-                var response = _veiculoService.ObterComMovimentacoes();
+                var response = _tarifaService.ObterPorTipoVeiculo(estacionamentoId, tipoVeiculo);
                 return StatusCode(200, response);
             }
             catch (ApplicationException e)

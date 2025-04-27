@@ -1,29 +1,28 @@
 ﻿using Eparking.Domain.Contracts.Services;
 using Eparking.Domain.Models.DTOs.Request;
 using Eparking.Domain.Models.DTOs.Response;
-using Eparking.Domain.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eparking.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VeiculoController : ControllerBase
+    public class EstacionamentoController : ControllerBase
     {
-        private readonly IVeiculoService _veiculoService;
+        private readonly IEstacionamentoService _estacionamentoService;
 
-        public VeiculoController(IVeiculoService veiculoService)
+        public EstacionamentoController(IEstacionamentoService estacionamentoService)
         {
-            _veiculoService = veiculoService;
+            _estacionamentoService = estacionamentoService;
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 201)]
-        public IActionResult Post(VeiculoRequestDto request)
+        [ProducesResponseType(typeof(EstacionamentoResponseDto), 201)]
+        public IActionResult Post(EstacionamentoRequestDto request)
         {
             try
             {
-                var response = _veiculoService.Criar(request);
+                var response = _estacionamentoService.Criar(request);
 
                 return StatusCode(201, response);
             }
@@ -33,17 +32,17 @@ namespace Eparking.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(400, e.Message);
+                return StatusCode(500, e.Message);
             }
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult Put(Guid id, VeiculoRequestDto request)
+        [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
+        public IActionResult Put(Guid id, EstacionamentoRequestDto request)
         {
             try
             {
-                var response = _veiculoService.Atualizar(id, request);
+                var response = _estacionamentoService.Atualizar(id, request);
 
                 return StatusCode(200, response);
             }
@@ -56,13 +55,14 @@ namespace Eparking.API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
+        [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
         public IActionResult Delete(Guid id)
         {
             try
             {
-                var response = _veiculoService.Excluir(id);
+                var response = _estacionamentoService.Excluir(id);
 
                 return StatusCode(200, response);
             }
@@ -77,12 +77,12 @@ namespace Eparking.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
+        [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
         public IActionResult Get()
         {
             try
             {
-                var response = _veiculoService.ObterTodos();
+                var response = _estacionamentoService.ObterTodos();
 
                 return StatusCode(200, response);
             }
@@ -97,12 +97,12 @@ namespace Eparking.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
+        [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                var response = _veiculoService.ObterPorId(id);
+                var response = _estacionamentoService.ObterPorId(id);
 
                 return StatusCode(200, response);
             }
@@ -116,13 +116,13 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{placa}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult GetByPlaca(string placa)
+        [HttpGet("{id}/vagas")]
+        [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
+        public IActionResult GetByVaga(Guid id)
         {
             try
             {
-                var response = _veiculoService.ObterPorPlaca(placa);
+                var response = _estacionamentoService.ObterComVagas(id);
 
                 return StatusCode(200, response);
             }
@@ -136,32 +136,14 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{tipoVeiculo}")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult GetByTipoVeiculo(TipoVeiculo tipoVeiculo)
+        [HttpGet("{nome}")]
+        [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
+        public IActionResult GetByNome(string nome)
         {
             try
             {
-                var response = _veiculoService.ObterPorTipo(tipoVeiculo);
-                return StatusCode(200, response);
-            }
-            catch (ApplicationException e)
-            {
-                return StatusCode(400, e.Message);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
-        }
+                var response = _estacionamentoService.ObterPorNome(nome);
 
-        [HttpGet("movimentacoes")]
-        [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
-        public IActionResult GetByMovements()
-        {
-            try
-            {
-                var response = _veiculoService.ObterComMovimentacoes();
                 return StatusCode(200, response);
             }
             catch (ApplicationException e)
