@@ -116,7 +116,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{id}/vagas")]
+        [HttpGet("vagas/{id}")]
         [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
         public IActionResult GetByVaga(Guid id)
         {
@@ -136,7 +136,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{nome}")]
+        [HttpGet("nome/{nome}")]
         [ProducesResponseType(typeof(EstacionamentoResponseDto), 200)]
         public IActionResult GetByNome(string nome)
         {
