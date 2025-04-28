@@ -116,7 +116,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{placa}")]
+        [HttpGet("placa/{placa}")]
         [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
         public IActionResult GetByPlaca(string placa)
         {
@@ -136,7 +136,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{tipoVeiculo}")]
+        [HttpGet("tipo/{tipoVeiculo}")]
         [ProducesResponseType(typeof(VeiculoResponseDto), 200)]
         public IActionResult GetByTipoVeiculo(TipoVeiculo tipoVeiculo)
         {

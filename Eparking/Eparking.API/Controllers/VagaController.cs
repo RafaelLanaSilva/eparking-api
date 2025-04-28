@@ -96,7 +96,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{estacionamentoId}/disponiveis")]
+        [HttpGet("disponiveis/{estacionamentoId}")]
         [ProducesResponseType(typeof(VagaResponseDto), 200)]
         public IActionResult GetByAvailability(Guid estacionamentoId)
         {
@@ -116,7 +116,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{estacionamentoId}/ocupados")]
+        [HttpGet("ocupados/{estacionamentoId}")]
         [ProducesResponseType(typeof(VagaResponseDto), 200)]
         public IActionResult GetByBusy(Guid estacionamentoId)
         {
@@ -135,7 +135,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{tipoVaga}")]
+        [HttpGet("tipo/{tipoVaga}")]
         [ProducesResponseType(typeof(VagaResponseDto), 200)]
         public IActionResult GetByType(TipoVaga tipoVaga)
         {
@@ -154,7 +154,7 @@ namespace Eparking.API.Controllers
             }
         }
 
-        [HttpGet("{estacionamentoId}")]
+        [HttpGet("estacionamento/{estacionamentoId}")]
         [ProducesResponseType(typeof(VagaResponseDto), 200)]
         public IActionResult GetByParking(Guid estacionamentoId)
         {
