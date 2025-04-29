@@ -52,11 +52,20 @@ namespace Eparking.Infra.Data.Repositories
 
         public Vaga? ObterVagaPorId(Guid id)
         {
-            using(var dataContext = new DataContext())
+            using (var dataContext = new DataContext())
             {
                 return dataContext
                     .Set<Vaga>()
                     .FirstOrDefault(v => v.Id == id);
+            }
+        }
+
+        public void AddRange(IEnumerable<Vaga> vagas)
+        {
+            using (var context = new DataContext())
+            {
+                context.Set<Vaga>().AddRange(vagas);
+                context.SaveChanges();
             }
         }
     }

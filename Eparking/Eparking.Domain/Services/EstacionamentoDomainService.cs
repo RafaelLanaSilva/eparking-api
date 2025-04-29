@@ -4,17 +4,20 @@ using Eparking.Domain.Contracts.Services;
 using Eparking.Domain.Models.DTOs.Request;
 using Eparking.Domain.Models.DTOs.Response;
 using Eparking.Domain.Models.Entities;
+using Eparking.Domain.Models.Enums;
 
 namespace Eparking.Domain.Services
 {
     public class EstacionamentoDomainService : IEstacionamentoService
     {
         private readonly IEstacionamentoRepository _estacionamentoRepository;
+        private readonly IVagaRepository _vagaRepository;
         private readonly IMapper _mapper;
 
-        public EstacionamentoDomainService(IEstacionamentoRepository estacionamentoRepository, IMapper mapper)
+        public EstacionamentoDomainService(IEstacionamentoRepository estacionamentoRepository, IVagaRepository vagaRepository, IMapper mapper)
         {
             _estacionamentoRepository = estacionamentoRepository;
+            _vagaRepository = vagaRepository;
             _mapper = mapper;
         }
 
@@ -24,6 +27,10 @@ namespace Eparking.Domain.Services
             estacionamento.Id = Guid.NewGuid();
 
             _estacionamentoRepository.Add(estacionamento);
+
+            var vagas = GerarVagas(estacionamento);
+
+            _vagaRepository.AddRange(vagas);
 
             var response = _mapper.Map<EstacionamentoResponseDto>(estacionamento);
             return response;
@@ -101,5 +108,46 @@ namespace Eparking.Domain.Services
             var response = _mapper.Map<List<EstacionamentoResponseDto>>(estacionamentos);
             return response;
         }
+
+        private List<Vaga> GerarVagas(Estacionamento estacionamento)
+        {
+            var vagas = new List<Vaga>();
+
+            for (int i = 0; i < estacionamento.QuantidadeVagasCarro; i++)
+            {
+                vagas.Add(new Vaga
+                {
+                    Id = Guid.NewGuid(),
+                    Numero = i + 1,
+                    TipoVaga = TipoVaga.Carro,
+                    EstacionamentoId = estacionamento.Id
+                });
+            }
+
+            for (int i = 0; i < estacionamento.QuantidadeVagasMotocicleta; i++)
+            {
+                vagas.Add(new Vaga
+                {
+                    Id = Guid.NewGuid(),
+                    Numero = i + 1,
+                    TipoVaga = TipoVaga.Motocicleta,
+                    EstacionamentoId = estacionamento.Id
+                });
+            }
+
+            for (int i = 0; i < estacionamento.QuantidadeVagasPreferencial; i++)
+            {
+                vagas.Add(new Vaga
+                {
+                    Id = Guid.NewGuid(),
+                    Numero = i + 1,
+                    TipoVaga = TipoVaga.Preferencial,
+                    EstacionamentoId = estacionamento.Id
+                });
+            }
+
+            return vagas;
+        }
     }
 }
+
