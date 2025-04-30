@@ -47,21 +47,21 @@ namespace Eparking.Infra.Data.Mappings
             builder.HasMany(e => e.Vagas)
                 .WithOne(v => v.Estacionamento)
                 .HasForeignKey(v => v.EstacionamentoId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Navigation(e => e.Vagas).AutoInclude();
 
             builder.HasMany(e => e.Tarifas)
                 .WithOne(t => t.Estacionamento)
                 .HasForeignKey(t => t.EstacionamentoId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Navigation(e => e.Tarifas).AutoInclude();
 
             builder.HasMany(e => e.Movimentacoes)
                 .WithOne(m => m.Estacionamento)
                 .HasForeignKey(m => m.EstacionamentoId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             #endregion
 

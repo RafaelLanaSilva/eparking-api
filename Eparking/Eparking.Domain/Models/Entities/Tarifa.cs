@@ -8,10 +8,10 @@ namespace Eparking.Domain.Models.Entities
 
         public Guid Id { get; set; }
         public Guid EstacionamentoId { get; set; }
-        public TipoVeiculo? TipoVeiculo { get; set; }
+        public TipoVeiculo TipoVeiculo { get; set; }
         public decimal? ValorHora { get; set; }
         public decimal? ValorFracao { get; set;} = null;
-        public DateTime? ToleranciaMinutos { get; set; }
+        public int? ToleranciaMinutos { get; set; }
 
         #endregion
 

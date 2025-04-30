@@ -38,7 +38,7 @@ namespace Eparking.Infra.Data.Mappings
 
             builder.Property(t => t.ToleranciaMinutos)
                 .HasColumnName("TOLERANCIA_MINUTOS")
-                .HasColumnType("datetime");
+                .HasColumnType("int");
 
             #region Relacionamentos
 
