@@ -7,6 +7,7 @@ namespace Eparking.Domain.Contracts.Repositories
     {
         void AddRange(IEnumerable<Vaga> vagas);
         Vaga? ObterVagaPorId(Guid id);
+        List<Vaga>? ObterPorEstacionamento(Guid estacionamentoId);
         List<Vaga>? ObterVagasDisponiveis(Guid estacionamentoId);
         List<Vaga>? ObterVagasOcupadas(Guid estacionamentoId);
         List<Vaga>? ObterVagasPorTipo(TipoVaga tipoVaga);   

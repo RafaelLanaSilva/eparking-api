@@ -62,10 +62,21 @@ namespace Eparking.Infra.Data.Repositories
 
         public void AddRange(IEnumerable<Vaga> vagas)
         {
-            using (var context = new DataContext())
+            using (var dataContext = new DataContext())
             {
-                context.Set<Vaga>().AddRange(vagas);
-                context.SaveChanges();
+                dataContext.Set<Vaga>().AddRange(vagas);
+                dataContext.SaveChanges();
+            }
+        }
+
+        public List<Vaga>? ObterPorEstacionamento(Guid estacionamentoId)
+        {
+            using (var dataContext = new DataContext())
+            {
+                return dataContext
+                    .Set<Vaga>()
+                    .Where(v => v.EstacionamentoId == estacionamentoId)
+                    .ToList();
             }
         }
     }

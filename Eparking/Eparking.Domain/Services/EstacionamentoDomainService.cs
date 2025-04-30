@@ -38,16 +38,26 @@ namespace Eparking.Domain.Services
 
         public EstacionamentoResponseDto Atualizar(Guid id, EstacionamentoRequestDto request)
         {
-            var estacionamento = _estacionamentoRepository.ObterPorId(id);
-            if ( estacionamento == null )
+            var estacionamentoExistente = _estacionamentoRepository.ObterPorId(id);
+            if (estacionamentoExistente == null )
             {
                 throw new ApplicationException("Estacionamento não encontrado.");
             }
 
-            _mapper.Map(request, estacionamento);
-            _estacionamentoRepository.Update(estacionamento);
+            _mapper.Map(request, estacionamentoExistente);
+            _estacionamentoRepository.Update(estacionamentoExistente);
 
-            var response = _mapper.Map<EstacionamentoResponseDto>(estacionamento);
+            var vagasAtuais = _vagaRepository.ObterPorEstacionamento(estacionamentoExistente.Id);
+            if (vagasAtuais != null && vagasAtuais.Any())
+            {
+                foreach (var vaga in vagasAtuais)
+                    _vagaRepository.Delete(vaga);
+            }
+
+            var novasVagas = GerarVagas(estacionamentoExistente);
+            _vagaRepository.AddRange(novasVagas);
+
+            var response = _mapper.Map<EstacionamentoResponseDto>(estacionamentoExistente);
             return response;
         }   
 
