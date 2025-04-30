@@ -98,7 +98,7 @@ namespace Eparking.Domain.Services
 
         public List<VagaResponseDto> ObterPorEstacionamento(Guid estacionamentoId)
         {
-            var vagas = _vagaRepository.ObterVagasDisponiveis(estacionamentoId);
+            var vagas = _vagaRepository.ObterPorEstacionamento(estacionamentoId);
             if (vagas == null || !vagas.Any())
             {
                 throw new ApplicationException("Nenhuma vaga encontrada no estacionamento informado.");
