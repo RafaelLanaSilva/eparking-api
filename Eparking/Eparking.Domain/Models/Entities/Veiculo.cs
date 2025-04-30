@@ -11,7 +11,7 @@ namespace Eparking.Domain.Models.Entities
         public string? Modelo { get; set; }
         public string? Placa { get; set; }
         public string? Cor { get; set; }
-        public TipoVeiculo? TipoVeiculo { get; set; }
+        public TipoVeiculo TipoVeiculo { get; set; }
 
         #endregion
 

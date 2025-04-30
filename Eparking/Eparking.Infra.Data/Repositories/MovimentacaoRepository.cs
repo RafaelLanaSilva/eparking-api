@@ -12,6 +12,9 @@ namespace Eparking.Infra.Data.Repositories
             using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Movimentacao>()
+                    .Include(v => v.Veiculo)
+                    .Include(v => v.Vaga)
+                    .Include(v => v.Estacionamento)
                     .FirstOrDefault(m => m.Id == id);
             }
         }

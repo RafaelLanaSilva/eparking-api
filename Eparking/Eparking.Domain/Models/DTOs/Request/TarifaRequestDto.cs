@@ -18,6 +18,6 @@ namespace Eparking.Domain.Models.DTOs.Request
         public decimal? ValorFracao { get; set; } = null;
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        public DateTime? ToleranciaMinutos { get; set; }
+        public int? ToleranciaMinutos { get; set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     public class SqlServerSettings
     {
-        public static string ConnectionString => "Data Source=localhost,1436;Initial Catalog=master;Persist Security Info=True;User ID=sa;Password=Trop@1234;Encrypt=False";
+        public static string ConnectionString => "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EParkingDB;Integrated Security=True;";
     }
 }

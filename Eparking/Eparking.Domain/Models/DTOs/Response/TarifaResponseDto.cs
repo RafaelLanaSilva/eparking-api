@@ -9,6 +9,6 @@ namespace Eparking.Domain.Models.DTOs.Response
         public TipoVeiculo? TipoVeiculo { get; set; }
         public decimal? ValorHora { get; set; }
         public decimal? ValorFracao { get; set; }
-        public DateTime? ToleranciaMinutos { get; set; }
+        public int? ToleranciaMinutos { get; set; }
     }
 }

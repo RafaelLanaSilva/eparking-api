@@ -2,6 +2,7 @@
 using Eparking.Domain.Models.Entities;
 using Eparking.Domain.Models.Enums;
 using Eparking.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Eparking.Infra.Data.Repositories
 {
@@ -12,6 +13,7 @@ namespace Eparking.Infra.Data.Repositories
             using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Tarifa>()
+                    .Include(e => e.Estacionamento)
                     .FirstOrDefault(t => t.EstacionamentoId == estacionamentoId && t.TipoVeiculo == tipo);
             }
         }
@@ -21,6 +23,7 @@ namespace Eparking.Infra.Data.Repositories
             using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Tarifa>()
+                    .Include(e => e.Estacionamento)
                     .Where(t => t.EstacionamentoId == estacionamentoId)
                     .ToList();
             }
@@ -31,6 +34,7 @@ namespace Eparking.Infra.Data.Repositories
             using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Tarifa>()
+                    .Include(e => e.Estacionamento)
                     .FirstOrDefault(t => t.EstacionamentoId == estacionamentoId && t.TipoVeiculo == tipoVeiculo);
             }
         }
@@ -40,6 +44,7 @@ namespace Eparking.Infra.Data.Repositories
             using (var dataContext = new DataContext())
             {
                 return dataContext.Set<Tarifa>()
+                    .Include(e => e.Estacionamento)
                     .FirstOrDefault(t => t.Id == id);
             }
         }
