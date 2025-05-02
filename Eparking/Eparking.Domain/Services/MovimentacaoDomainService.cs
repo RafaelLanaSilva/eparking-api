@@ -238,7 +238,7 @@ namespace Eparking.Domain.Services
 
             var horasCompletas = (int)(minutosTotais / 60);
             var minutosRestantes = minutosTotais % 60;
-            var blocosFracao = (int)Math.Ceiling(minutosRestantes / 15);
+            var blocosFracao = (int)Math.Round(minutosRestantes / 15);
 
             if (blocosFracao < 1)
                 blocosFracao = 0;
