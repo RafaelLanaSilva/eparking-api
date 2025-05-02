@@ -118,8 +118,8 @@ namespace Eparking.Infra.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TIPO_VEICULO");
 
-                    b.Property<DateTime?>("ToleranciaMinutos")
-                        .HasColumnType("datetime")
+                    b.Property<int?>("ToleranciaMinutos")
+                        .HasColumnType("int")
                         .HasColumnName("TOLERANCIA_MINUTOS");
 
                     b.Property<decimal?>("ValorFracao")
@@ -196,7 +196,7 @@ namespace Eparking.Infra.Data.Migrations
                         .HasColumnType("nvarchar(7)")
                         .HasColumnName("PLACA");
 
-                    b.Property<int?>("TipoVeiculo")
+                    b.Property<int>("TipoVeiculo")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -209,7 +209,7 @@ namespace Eparking.Infra.Data.Migrations
                     b.HasOne("Eparking.Domain.Models.Entities.Estacionamento", "Estacionamento")
                         .WithMany("Movimentacoes")
                         .HasForeignKey("EstacionamentoId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Eparking.Domain.Models.Entities.Vaga", "Vaga")
@@ -236,7 +236,7 @@ namespace Eparking.Infra.Data.Migrations
                     b.HasOne("Eparking.Domain.Models.Entities.Estacionamento", "Estacionamento")
                         .WithMany("Tarifas")
                         .HasForeignKey("EstacionamentoId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Estacionamento");
@@ -247,7 +247,7 @@ namespace Eparking.Infra.Data.Migrations
                     b.HasOne("Eparking.Domain.Models.Entities.Estacionamento", "Estacionamento")
                         .WithMany("Vagas")
                         .HasForeignKey("EstacionamentoId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Estacionamento");

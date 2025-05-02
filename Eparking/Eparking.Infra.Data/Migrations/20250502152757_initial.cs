@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Eparking.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,7 +35,7 @@ namespace Eparking.Infra.Data.Migrations
                     MODELO = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PLACA = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
                     COR = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TipoVeiculo = table.Column<int>(type: "int", nullable: true)
+                    TipoVeiculo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,7 +51,7 @@ namespace Eparking.Infra.Data.Migrations
                     TIPO_VEICULO = table.Column<int>(type: "int", nullable: false),
                     VALOR_HORA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     VALOR_FRACAO = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    TOLERANCIA_MINUTOS = table.Column<DateTime>(type: "datetime", nullable: true)
+                    TOLERANCIA_MINUTOS = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,7 +61,7 @@ namespace Eparking.Infra.Data.Migrations
                         column: x => x.ESTACIONAMENTO_ID,
                         principalTable: "TB_ESTACIONAMENTO",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,8 +81,7 @@ namespace Eparking.Infra.Data.Migrations
                         name: "FK_TB_VAGA_TB_ESTACIONAMENTO_ESTACIONAMENTO_ID",
                         column: x => x.ESTACIONAMENTO_ID,
                         principalTable: "TB_ESTACIONAMENTO",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -105,7 +104,7 @@ namespace Eparking.Infra.Data.Migrations
                         column: x => x.ESTACIONAMENTO_ID,
                         principalTable: "TB_ESTACIONAMENTO",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TB_MOVIMENTACAO_TB_VAGA_VAGA_ID",
                         column: x => x.VAGA_ID,

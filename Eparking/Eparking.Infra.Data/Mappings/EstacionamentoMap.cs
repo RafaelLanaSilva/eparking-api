@@ -47,7 +47,7 @@ namespace Eparking.Infra.Data.Mappings
             builder.HasMany(e => e.Vagas)
                 .WithOne(v => v.Estacionamento)
                 .HasForeignKey(v => v.EstacionamentoId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Navigation(e => e.Vagas).AutoInclude();
 
